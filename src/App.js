@@ -1,6 +1,7 @@
 import Navbar from './Navbar';
 import Hero from './Hero';
 import './App.css';
+import About from './About';
 import Add from './Add';
 import NotFound from './NotFound';
 import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
@@ -20,6 +21,7 @@ function App() {
             <NotFound />
           </Route>
         </Switch>
+        <About />
       </div>
     </Router>
   );

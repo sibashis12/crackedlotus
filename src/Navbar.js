@@ -7,7 +7,7 @@ const Navbar = () => {
         <img src="./logo.png" alt="App logo" class="logo"></img>
         <h1>Questify</h1>
         <div class="add-button">
-          <Link to='/add'>Add Task</Link>
+          <Link to='/add'><i class="fa-solid fa-plus" title="Add Task"></i>Add Task</Link>
         </div>
     </div>
   )
