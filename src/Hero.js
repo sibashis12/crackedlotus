@@ -1,8 +1,13 @@
 import React from 'react'
-
+import {useState, useEffect} from 'react'
 const Hero = () => {
+  const [tasks, setTasks] = useState([]);
+  useEffect(() => {
+    
+  }, []);
   return (
     <div class="container">
+        <div class="color-filler hide"></div>
         <div class="task">
             <div class="task-vitals">
                 <h4 class="status">Pending</h4>
@@ -13,6 +18,7 @@ const Hero = () => {
                 <h3>Task-Wash Car</h3>
             </div>
         </div>
+        <div class="color-filler hide"></div>
     </div>
   )
 }

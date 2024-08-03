@@ -4,14 +4,21 @@
   padding:0;
   text-align:center;
 }
-#root{
+body{
   min-height:100dvh;
+  display:flex;
+  flex-direction:column;
+}
+#root{
+  flex-grow: 1;
+  flex-basis:0;
   display:flex;
   flex-direction:column;
 }
 .App{
   height:100%;
-  flex-grow: 1;
+  display:flex;
+  flex-direction:column;
 }
 p{
   font-size:1.5rem;
@@ -54,6 +61,7 @@ h1:hover{
   max-width:300px;
   margin:1rem;
   border-radius:8px;
+  max-height:200px;
 }
 .task-vitals{
   display:flex;
@@ -72,7 +80,7 @@ h1:hover{
   background-color:blue;
   color:white;
   font-weight:700;
-  margin:2rem;
+  margin:1rem;
 }
 .button:hover{
   background-color:green;
@@ -98,6 +106,9 @@ h1:hover{
   font-size:1.25rem;
   padding:0.1rem;
 }
+input:focus{
+  background-color:gold;
+}
 .center{
   display:flex;
   justify-content:center;
@@ -116,7 +127,8 @@ h1:hover{
     display:inherit;
   }
   .container{
-    height:100%;
+    flex-grow:1;
+    flex-basis:0;
     display:grid;
     grid-template-columns: 0.2fr 1fr 0.2fr;
   }
