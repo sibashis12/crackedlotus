@@ -5,6 +5,7 @@ const Hero = () => {
   const [tasks, setTasks] = useState([]);
   const [number, setNumber] = useState(0);
   const [completed, setCompleted] = useState(0);
+  const [time, setTime] = useState(0);
   useEffect(() => {
     if(!localStorage.getItem("number")){
       localStorage.setItem("number", 0);

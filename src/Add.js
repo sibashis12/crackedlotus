@@ -8,6 +8,11 @@ const Add = () => {
     const [deadline, setDeadline] = useState('');
     const [time, setTime]=useState('');
     const [priority, setPriority] = useState('not important');
+    let curDate = new Date().toLocaleDateString('en-IN').slice(0, 10);
+    console.log(new Date().toLocaleDateString('en-IN'));
+    console.log(curDate);
+    let curTime = new Date().toLocaleTimeString('en-IN').slice(0, 4);
+    console.log(curTime);
     const onSubmit = (e) => {
         e.preventDefault();
         let tasks = JSON.parse(localStorage.getItem('tasks'));
@@ -15,6 +20,7 @@ const Add = () => {
         tasks=Object.assign(newTask, tasks);
         console.log(newTask);
         localStorage.setItem('tasks', JSON.stringify(tasks));
+        localStorage.setItem("number", JSON.stringify(Number.parseInt(localStorage.getItem("number"))+1));
         history.push('/');
     }
   return (
@@ -29,7 +35,14 @@ const Add = () => {
                 </div>
                 <div>
                     <label>Deadline Date: </label>
-                    <input type="date" value={deadline} required onChange={(e) => setDeadline(e.target.value)}></input>
+                    <input type="date" value={deadline} required onChange={(e) => {
+                        if(e.target.value<curDate){
+                            alert("Deadline should be on or after today's date");
+                        }
+                        else{
+                            setDeadline(e.target.value);
+                        }
+                    }}></input>
                 </div>
                 <div>
                     <label>Time: </label>
