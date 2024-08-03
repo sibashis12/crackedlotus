@@ -4,14 +4,19 @@ import { useHistory } from 'react-router-dom'
 
 const Add = () => {
     const history=useHistory();
-    const onSubmit = (e) => {
-        e.preventDefault();
-        history.push('/');
-    }
     const [title, setTitle] = useState('');
     const [deadline, setDeadline] = useState('');
     const [time, setTime]=useState('');
     const [priority, setPriority] = useState('not important');
+    const onSubmit = (e) => {
+        e.preventDefault();
+        let tasks = JSON.parse(localStorage.getItem('tasks'));
+        let newTask={[title]:[deadline, time, priority]};
+        tasks=Object.assign(newTask, tasks);
+        console.log(newTask);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        history.push('/');
+    }
   return (
     <div class="container">
         <div class="color-filler hide"></div>

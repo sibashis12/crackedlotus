@@ -3,11 +3,11 @@ import {Link} from 'react-router-dom'
 
 const Navbar = () => {
   return (
-    <div class="navbar">
-        <img src="./logo.png" alt="App logo" class="logo"></img>
+    <div className="navbar">
+        <img src="./logo.png" alt="App logo" className="logo"></img>
         <h1>Questify</h1>
-        <div class="add-button">
-          <Link to='/add'><i class="fa-solid fa-plus" title="Add Task"></i>Add Task</Link>
+        <div className="add-button">
+          <Link to='/add'><i className="fa-solid fa-plus" title="Add Task"></i>Add Task</Link>
         </div>
     </div>
   )
