@@ -1,13 +1,123 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*, *::after, *::before {
+  box-sizing: border-box;
+  margin:0;
+  padding:0;
+  text-align:center;
+}
+#root{
+  min-height:100dvh;
+  display:flex;
+  flex-direction:column;
+}
+.App{
+  height:100%;
+  flex-grow: 1;
+}
+p{
+  font-size:1.5rem;
+  padding:0.25rem;
+}
+a{
+  color:inherit;
+  text-decoration:none;
+}
+.navbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0.5rem 1rem;
+  border-bottom:2px solid black;
+}
+h1:hover{
+  color:darkgreen;
+}
+.header{
+  text-align:center;
+  font-size:2rem;
+  font-weight:700;
+  text-decoration:underline;
+  padding:0.5rem;
+}
+.logo{
+  border-radius:50%;
+  border: 3px solid red;
+  width:3rem;
+  height:3rem;
+  margin:0.25rem;
+  transition: all 0.5s;
+}
+.logo:hover{
+  border-color:green;
+}
+.task{
+  border:2px solid black;
+  max-width:300px;
+  margin:1rem;
+  border-radius:8px;
+}
+.task-vitals{
+  display:flex;
+  justify-content:space-between;
+  padding:0.5rem;
+  border-bottom: 1px solid black;
+}
+.task-details{
+  padding:0.5rem;
+}
+.button{
+  font-size:1.5rem;
+  padding:0.5rem;
+  border-radius:8px;
+  border:2px solid black;
+  background-color:blue;
+  color:white;
+  font-weight:700;
+  margin:2rem;
+}
+.button:hover{
+  background-color:green;
+  border-color:gold;
+}
+.form{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  width:80%;
+  margin:1rem auto;
+  border:2px solid black;
+  border-radius:20px;
+  padding:0.5rem;
+  font-size:2rem;
+}
+.form div{
+  margin:0.5rem;
+}
+.form input, select{
+  height:2rem;
+  font-size:1.25rem;
+  padding:0.1rem;
+}
+.center{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.color-filler{
+  background-color:blanchedalmond;
+  height:100%;
+}
+.hide{
+  display:none;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@media (min-width: 800px) {
+  .hide{
+    display:inherit;
+  }
+  .container{
+    height:100%;
+    display:grid;
+    grid-template-columns: 0.2fr 1fr 0.2fr;
+  }
 }
