@@ -13,10 +13,10 @@ const Add = () => {
     curTime=curTime.getTime();
     const onSubmit = (e) => {
         e.preventDefault();
-        let tasks = JSON.parse(localStorage.getItem('tasks'));
+        let tasks = JSON.parse(localStorage.getItem("tasks"));
         let newTask=[title, priority, deadline];
         tasks.push(newTask);
-        localStorage.setItem('tasks', JSON.stringify(tasks));
+        localStorage.setItem("tasks", JSON.stringify(tasks));
         localStorage.setItem("number", JSON.stringify(Number.parseInt(localStorage.getItem("number"))+1));
         history.push('/');
     }

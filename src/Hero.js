@@ -1,7 +1,10 @@
 import React from 'react'
 import {useState, useEffect} from 'react'
+import {useHistory} from 'react-router-dom'
 import Welcome from './Welcome'
+import Complete from './Complete'
 const Hero = () => {
+  const history = useHistory();
   function sort(array){
     //insertion sort algorithm to enter element into array
     for(let i=1;i<array.length;i++){
@@ -14,18 +17,30 @@ const Hero = () => {
       array[j+1]=temp;
     }
   }
-  function handleDelete(index){
-    let ctasks=tasks;
-    ctasks.splice(index, 1);
-    localStorage.setItem(JSON.stringify(ctasks));
-    localStorage.setItem("missed", missed+1);
-    setTasks(ctasks);
+  function handleDone(title, index){
+    document.getElementById(index).classList.add("done");
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      }, 1000);
+    }).then(() => {let ctasks=tasks;
+      for(let i=0;i<ctasks.length;i++){
+        if(ctasks[i][0]==title){
+          ctasks.splice(i, 1);
+          break;
+        }
+      }
+      localStorage.setItem("completed", Number.parseInt(localStorage.getItem("completed"))+1);
+      localStorage.setItem("tasks", JSON.stringify(ctasks));
+      history.go(0);});
+    
   }
+    
   const [tasks, setTasks]=useState([]);
   const [number, setNumber]=useState(0);
-  let completed=0;
+  const [completed, setCompleted]=useState(0);
   let time=new Date().getTime();
-  let missed=0;
+  const [missed, setMissed]=useState(0);
   const [importantTasks, setImportantTasks] = useState([]);
   const [unimportantTasks, setUnimportantTasks] = useState([]);
   useEffect(() => {
@@ -36,10 +51,21 @@ const Hero = () => {
       localStorage.setItem("missed", 0);
     }
     else{
-      setTasks(JSON.parse(localStorage.getItem("tasks")));
+      let ctasks=JSON.parse(localStorage.getItem("tasks"));
+      let missed=0;
+      for(let i=0;i<ctasks.length;i++){
+        if(ctasks[i][2]<time){
+          ctasks.splice(i, 1);
+          missed++;
+          i--;
+        }
+      }
+      localStorage.setItem("tasks", JSON.stringify(ctasks));
+      localStorage.setItem("missed", missed);
+      setTasks(ctasks);
       setNumber(Number.parseInt(JSON.parse(localStorage.getItem("number"))));
-      completed=Number.parseInt(JSON.parse(localStorage.getItem("completed")));
-      missed=Number.parseInt(JSON.parse(localStorage.getItem("missed")));
+      setCompleted(Number.parseInt(JSON.parse(localStorage.getItem("completed"))));
+      setMissed(Number.parseInt(JSON.parse(localStorage.getItem("missed"))));
     }
   }, []);
   useEffect(() => {
@@ -47,11 +73,9 @@ const Hero = () => {
     let unimpTasks=[];
     for(let i=0;i<tasks.length;i++){
       if(tasks[i][2]<time){
-        console.log("omg");
-        handleDelete(i);
+        history.go(0);
       }
       else{
-        console.log("shit",tasks[i][1]);
         if(tasks[i][1]==='1'){
           impTasks.push(tasks[i]);
         }
@@ -60,8 +84,6 @@ const Hero = () => {
         }
       }
     }
-    console.log("end");
-    console.log(tasks);
     sort(impTasks);
     sort(unimpTasks);
     setImportantTasks(impTasks);
@@ -73,12 +95,13 @@ const Hero = () => {
         {number===0 && <Welcome />}
         {number!=0 && 
           <div className="hero">
-            <div className="tasks">
+            {number===completed && <Complete />}
+            {number!==completed && <div className="tasks">
               {importantTasks.map((task, index) => (
-                <div className="task" key={index}>
+                <div className="task" key={index} id={`${index}`}>
                   <div className="task-vitals">
                     <h4 className="important">Important</h4>
-                    <div className="status">Done</div>
+                    <div className="status" onClick={() => handleDone(task[0], index)}>Done</div>
                     {task[2]<(time+259200000) && <h4 className="priority">Urgent</h4>}
                   </div>
                   <div className="task-details">
@@ -88,9 +111,10 @@ const Hero = () => {
                 </div>
               ))}
               {unimportantTasks.map((task, index) => (
-                <div className="task" key={-index}>
+                <div className="task" key={-index} id={`${-index}`}>
                   <div className="task-vitals">
                     <h4 className="unimportant">Not Important</h4>
+                    <div className="status" onClick={() => handleDone(task[0], -index)}>Done</div>
                     {task[2]<(time+259200000) && <h4 className="priority">Urgent</h4>}
                   </div>
                   <div className="task-details">
@@ -99,7 +123,7 @@ const Hero = () => {
                   </div>
                 </div>
               ))}
-            </div>
+            </div>}
               <div className="end">
                 <h3 className="section-header">Logs:</h3>
                 <div className="logs">
