@@ -1,7 +1,6 @@
 import React from 'react'
 
-const 
-Welcome = () => {
+const Welcome = () => {
   return (
     <div className="spacer">
         <h3>Welcome to Questify!!</h3>

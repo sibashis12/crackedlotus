@@ -1,5 +1,5 @@
 import React from 'react'
-import {Link, Switch, Route, useHistory} from 'react-router-dom'
+import {Link, Switch, Route} from 'react-router-dom'
 
 const Navbar = () => {
   return (

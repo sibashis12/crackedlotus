@@ -1,6 +1,5 @@
 import Navbar from './Navbar';
 import Hero from './Hero';
-import './App.css';
 import About from './About';
 import Add from './Add';
 import NotFound from './NotFound';

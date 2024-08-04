@@ -2,7 +2,7 @@ import React from 'react'
 import {useState} from 'react'
 import { useHistory } from 'react-router-dom'
 //3 date formats used->Comparison uses timestamp, for datetimelocal input uses ISO8601 format,
-// and code while running stores in Date object format
+// and code while running stores in Date object format.
 
 const Add = () => {
     const history=useHistory();

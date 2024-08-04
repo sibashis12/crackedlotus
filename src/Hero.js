@@ -160,17 +160,6 @@ const Hero = () => {
               </div>
           </div>
         }
-        
-        {/* <div className="task">
-            <div className="task-vitals">
-                <h4 className="status">Pending</h4>
-                <h4 className="priority">Urgent and Important</h4>
-            </div>
-            <div className="task-details">
-                <p>Time Remaining:5 minutes</p>
-                <h3>Task-Wash Car</h3>
-            </div>
-        </div> */}
         <div className="color-filler hide"></div>
     </div>
   )
