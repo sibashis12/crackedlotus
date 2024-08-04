@@ -88,7 +88,8 @@ h1:hover{
 .task-vitals{
   display:flex;
   justify-content:space-between;
-  padding:0.5rem;
+  align-items:center;
+  padding:0.2rem;
   border-bottom: 1px solid black;
 }
 .task-details{
@@ -158,6 +159,50 @@ input:focus{
 .about a:hover{
   background-color:black;
   color:gold;
+}
+.hero{
+  height:100%;
+  width:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.tasks{
+  flex-grow: 1;
+  width:100%;
+  justify-content:center;
+  justify-items:center;
+  align-items:center;
+  display:grid;
+  grid-gap:1rem;
+  grid-template-columns:repeat(auto-fit, minmax(250px, 1fr));
+}
+.task p{
+  font-size:1rem;
+}
+.status{
+  font-size:0.8rem;
+  padding:0.3rem;
+  cursor: pointer;
+  border-radius:3px;
+  background-color:rgba(250, 128, 115,0.5);
+}
+.status:hover{
+  background-color:greenyellow;
+}
+.end{
+  flex-grow:0.1;
+  width:100%;
+}
+.logs{
+  width:100%;
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-around;
+  align-items:center;
+  padding:1rem;
+  border-top:1px solid black;
+  font-size:1.25rem;
 }
 .hide{
   display:none;
