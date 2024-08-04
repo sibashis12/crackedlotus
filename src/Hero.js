@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
 import Welcome from './Welcome'
 import Complete from './Complete'
+import {Link} from 'react-router-dom'
 const Hero = () => {
   const history = useHistory();
   function sort(array){
@@ -32,10 +33,27 @@ const Hero = () => {
       }
       localStorage.setItem("completed", Number.parseInt(localStorage.getItem("completed"))+1);
       localStorage.setItem("tasks", JSON.stringify(ctasks));
-      history.go(0);});
-    
+      history.go(0);
+    }); 
   }
-    
+  function handleCancel(title, index){
+    document.getElementById(index).classList.add("cancelling");
+    new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve();
+      }, 1000);
+    }).then(() => {let ctasks=tasks;
+      for(let i=0;i<ctasks.length;i++){
+        if(ctasks[i][0]==title){
+          ctasks.splice(i, 1);
+          break;
+        }
+      }
+      localStorage.setItem("number", Number.parseInt(localStorage.getItem("number"))-1);
+      localStorage.setItem("tasks", JSON.stringify(ctasks));
+      history.go(0);
+  });
+}
   const [tasks, setTasks]=useState([]);
   const [number, setNumber]=useState(0);
   const [completed, setCompleted]=useState(0);
@@ -108,6 +126,10 @@ const Hero = () => {
                     <h3>Task- {task[0]}</h3>
                     <p>Time Remaining: {(task[2]-time)/1000/60} minutes</p>
                   </div>
+                  <div className="changers">
+                    <Link className="edit" to="/edit">Edit</Link>
+                    <div className="cancel" onClick={() => handleCancel(task[0], index)}>Cancel</div>
+                  </div>
                 </div>
               ))}
               {unimportantTasks.map((task, index) => (
@@ -120,6 +142,10 @@ const Hero = () => {
                   <div className="task-details">
                     <h3>Task- {task[0]}</h3>
                     <p>Time Remaining: {(task[2]-time)/1000/60} minutes</p>
+                  </div>
+                  <div className="changers">
+                    <Link className="edit" to="/edit">Edit</Link>
+                    <div className="cancel" onClick={() => handleCancel(task[0], -index)}>Cancel</div>
                   </div>
                 </div>
               ))}

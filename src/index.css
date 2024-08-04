@@ -30,7 +30,7 @@ a{
   text-decoration:none;
 }
 .navbar{
-  background-color:gainsboro;
+  background-color:blanchedalmond;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -209,14 +209,15 @@ input:focus{
   padding:0.3rem;
   cursor: pointer;
   border-radius:3px;
-  background-color:rgba(250, 128, 115,0.5);
+  background-color:greenyellow;
 }
 .status:hover{
-  background-color:greenyellow;
+  background-color:lawngreen;
 }
 .done{
   position:relative;
   transform:scale(0.25);
+  cursor:progress;
   transition:all 2.5s;
 }
 .done::before{
@@ -256,6 +257,79 @@ input:focus{
   padding:1rem;
   border-top:1px solid black;
   font-size:1.25rem;
+}
+.changers{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:0.25rem;
+}
+.edit{
+  background-color:khaki;
+  border-radius:5px;
+  padding:0.3rem;
+  font-size:0.8rem;
+  cursor:pointer;
+  position:relative;
+}
+.edit:hover{
+  background-color:gold;
+}
+.edit:hover::after{
+  position:absolute;
+  top:100%;
+  left:0;
+  background-color:blanchedalmond;
+  color:black;
+  border:1px solid black;
+  padding:0.3rem;
+  font-size:0.8rem;
+  border-radius:5px;
+  content:"Work in progress...";
+
+}
+.cancel{
+  background-color:rgba(250, 128, 115,0.5);
+  border-radius:5px;
+  padding:0.3rem;
+  font-size:0.8rem;
+  cursor:pointer;
+}
+.cancel:hover{
+  background-color:rgba(250, 128, 115,1);
+}
+.cancelling{
+  position:relative;
+  transform:scale(0.25);
+  cursor:progress;
+  transition:all 2.5s;
+}
+.cancelling::before{
+  position:absolute;
+  content:"Cancelling Task...";
+  background-color:salmon;
+  color:black;
+  border:1px solid black;
+  border-radius:5px;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0;
+  text-align:center;
+  font-size:2rem;
+  padding:0.5rem;
+}
+.cancelling::after{
+  content:"✗";
+  position:absolute;
+  bottom:1rem;
+  right:50%;
+  left:50%;
+  font-size:2rem;
+  color:red;
+}
+.scoot{
+  padding:0.2rem;
 }
 .hide{
   display:none;
