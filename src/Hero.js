@@ -26,7 +26,7 @@ const Hero = () => {
       }, 1000);
     }).then(() => {let ctasks=tasks;
       for(let i=0;i<ctasks.length;i++){
-        if(ctasks[i][0]==title){
+        if(ctasks[i][0]===title){
           ctasks.splice(i, 1);
           break;
         }
@@ -44,7 +44,7 @@ const Hero = () => {
       }, 1000);
     }).then(() => {let ctasks=tasks;
       for(let i=0;i<ctasks.length;i++){
-        if(ctasks[i][0]==title){
+        if(ctasks[i][0]===title){
           ctasks.splice(i, 1);
           break;
         }
@@ -85,7 +85,7 @@ const Hero = () => {
       setCompleted(Number.parseInt(JSON.parse(localStorage.getItem("completed"))));
       setMissed(Number.parseInt(JSON.parse(localStorage.getItem("missed"))));
     }
-  }, []);
+  }, [time]);
   useEffect(() => {
     let impTasks=[];
     let unimpTasks=[];
@@ -106,12 +106,12 @@ const Hero = () => {
     sort(unimpTasks);
     setImportantTasks(impTasks);
     setUnimportantTasks(unimpTasks);
-  }, [tasks]);
+  }, [tasks, history, time]);
   return (
     <div className="container">
         <div className="color-filler hide"></div>
         {number===0 && <Welcome />}
-        {number!=0 && 
+        {number!==0 && 
           <div className="hero">
             {number===completed && <Complete />}
             {number!==completed && <div className="tasks">
