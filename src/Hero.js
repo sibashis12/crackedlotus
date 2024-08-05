@@ -116,10 +116,10 @@ const Hero = () => {
             {number===(completed+missed) && <Complete />}
             {number!==completed && <div className="tasks">
               {importantTasks.map((task, index) => (
-                <div className="task" key={index} id={`${index}`}>
+                <div className="task" key={index+1} id={`${index+1}`}>
                   <div className="task-vitals">
                     <h4 className="important">Important</h4>
-                    <div className="status" onClick={() => handleDone(task[0], index)}>Done</div>
+                    <div className="status" onClick={() => handleDone(task[0], index+1)}>Done</div>
                     {task[2]<(time+259200000) && <h4 className="priority">Urgent</h4>}
                   </div>
                   <div className="task-details">
@@ -130,15 +130,15 @@ const Hero = () => {
                   </div>
                   <div className="changers">
                     <Link className="edit" to="/edit">Edit</Link>
-                    <div className="cancel" onClick={() => handleCancel(task[0], index)}>Cancel</div>
+                    <div className="cancel" onClick={() => handleCancel(task[0], index+1)}>Cancel</div>
                   </div>
                 </div>
               ))}
               {unimportantTasks.map((task, index) => (
-                <div className="task" key={-index} id={`${-index}`}>
+                <div className="task" key={-index-1} id={`${-index-1}`}>
                   <div className="task-vitals">
                     <h4 className="unimportant">Not Important</h4>
-                    <div className="status" onClick={() => handleDone(task[0], -index)}>Done</div>
+                    <div className="status" onClick={() => handleDone(task[0], -index-1)}>Done</div>
                     {task[2]<(time+259200000) && <h4 className="priority">Urgent</h4>}
                   </div>
                   <div className="task-details">
@@ -149,7 +149,7 @@ const Hero = () => {
                   </div>
                   <div className="changers">
                     <Link className="edit" to="/edit">Edit</Link>
-                    <div className="cancel" onClick={() => handleCancel(task[0], -index)}>Cancel</div>
+                    <div className="cancel" onClick={() => handleCancel(task[0], -index-1)}>Cancel</div>
                   </div>
                 </div>
               ))}
