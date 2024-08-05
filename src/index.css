@@ -270,10 +270,10 @@ input:focus{
   padding:0.3rem;
   font-size:0.8rem;
   cursor:pointer;
-  position:relative;
 }
 .edit:hover{
   background-color:gold;
+  position:relative;
 }
 .edit:hover::after{
   position:absolute;
