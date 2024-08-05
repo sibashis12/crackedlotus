@@ -113,7 +113,7 @@ const Hero = () => {
         {number===0 && <Welcome />}
         {number!==0 && 
           <div className="hero">
-            {number===completed && <Complete />}
+            {number===(completed+missed) && <Complete />}
             {number!==completed && <div className="tasks">
               {importantTasks.map((task, index) => (
                 <div className="task" key={index} id={`${index}`}>
@@ -124,7 +124,9 @@ const Hero = () => {
                   </div>
                   <div className="task-details">
                     <h3>Task- {task[0]}</h3>
-                    <p>Time Remaining: {(task[2]-time)/1000/60} minutes</p>
+                    {((task[2]-time)>86400000) && <p>Time Remaining: {Math.round((task[2]-time)/1000/60/60/24)} days and {Math.round((task[2]-time)/1000/60/60%24)} hours</p>}
+                    {((task[2]-time)<=86400000&&(task[2]-time)>3600000) && <p>Time Remaining: {Math.round((task[2]-time)/1000/60/60)} hours and {Math.round((task[2]-time)/1000/60%60)} minutes</p>}
+                    {((task[2]-time)<=3600000&&(task[2]-time)>60000) && <p>Time Remaining: {Math.round((task[2]-time)/1000/60)} minutes</p>}
                   </div>
                   <div className="changers">
                     <Link className="edit" to="/edit">Edit</Link>
@@ -141,7 +143,9 @@ const Hero = () => {
                   </div>
                   <div className="task-details">
                     <h3>Task- {task[0]}</h3>
-                    <p>Time Remaining: {(task[2]-time)/1000/60} minutes</p>
+                    {((task[2]-time)>86400000) && <p>Time Remaining: {Math.round((task[2]-time)/1000/60/60/24)} days and {Math.round((task[2]-time)/1000/60/60%24)} hours</p>}
+                    {((task[2]-time)<=86400000&&(task[2]-time)>3600000) && <p>Time Remaining: {Math.round((task[2]-time)/1000/60/60)} hours and {Math.round((task[2]-time)/1000/60%60)} minutes</p>}
+                    {((task[2]-time)<=3600000&&(task[2]-time)>60000) && <p>Time Remaining: {Math.round((task[2]-time)/1000/60)} minutes</p>}
                   </div>
                   <div className="changers">
                     <Link className="edit" to="/edit">Edit</Link>
